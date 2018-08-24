@@ -13,6 +13,8 @@ const bitcoin = new Blockchain();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
 
+const host = 'localhost'
+
 app.get('/blockchain', function(req, res){
     res.send(bitcoin);
 });
@@ -116,6 +118,7 @@ app.post('/receive-new-block', function(req, res){
 // register a node and broadcast it the network
 app.post('/register-and-broadcast-node', function(req, res){
     const newNodeUrl = req.body.newNodeUrl;
+    
     if (bitcoin.networkNodes.indexOf(newNodeUrl) == -1) bitcoin.networkNodes.push(newNodeUrl);
     
     const regNodesPromises = [];
