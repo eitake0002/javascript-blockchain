@@ -4,7 +4,7 @@ Sample blockchain program written in JavaScript. You can make your own original 
 
 - Create original token
 - Building original simple blockchain network
-- Consensys Algorithm(Longest chain algorithm)
+- Consensus Algorithm(Longest chain algorithm)
 - Transaction, Consensus APIs
 - Synchronizing Network
 
