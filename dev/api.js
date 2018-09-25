@@ -15,16 +15,19 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 const host = 'localhost'
 
+// Get current transactions and blocks.
 app.get('/blockchain', function(req, res){
     res.send(bitcoin);
 });
 
+// Create transaction.
 app.post('/transaction', function(req, res){
     const newTransaction = req.body;
     const blockIndex = bitcoin.addTransactionToPendingTransactions(newTransaction);
     res.json({note: `Transaction will be added in block ${blockIndex}.`})
 });
 
+// Broadcast transaction to all nodes. 
 app.post('/transaction/broadcast', function(req, res){
     const newTransaction = bitcoin.createNewTransactions(req.body.amount, req.body.sender, req.body.recipient);
     bitcoin.addTransactionToPendingTransactions(newTransaction);
@@ -47,6 +50,7 @@ app.post('/transaction/broadcast', function(req, res){
     });
 });
 
+// Execute mining. 
 app.get('/mine', function(req, res){
     const lastBlock = bitcoin.getLastBlock();
     const previousBlockHash = lastBlock['hash'];
@@ -94,6 +98,7 @@ app.get('/mine', function(req, res){
     })    
 });
 
+// Recieves blocks newly created. 
 app.post('/receive-new-block', function(req, res){
     const newBlock = req.body.newBlock;
     const lastBlock = bitcoin.getLastBlock();
