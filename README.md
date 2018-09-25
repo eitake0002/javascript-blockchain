@@ -22,6 +22,22 @@ $ sh run.sh
 $ sh add_nodes.sh
 ```
 
+# Running on containers
+
+* Make sure docker engine and docker compose are installed. 
+
+Docker compose install
+
+https://docs.docker.com/compose/install/
+
+```
+# Build image & run containers
+$ docker-compose build && docker-compose up
+
+# Stop containers
+$ docker-compose down
+```
+
 # APIs
 
 |path|Explain|Method|
